@@ -34,7 +34,7 @@
         return mutated.add(descendants).add(ancestors);
     };
 
-    // Watch for new embeds in chat messages
+    // Watch for new messages in chat messages
     new MutationObserver(function(mutations, observer) {
         mutations.forEach(function(mutation) {
             mutationFind(mutation, ".message").removeBlockedUser();
