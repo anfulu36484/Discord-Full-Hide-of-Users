@@ -15,9 +15,10 @@
     $.fn.removeBlockedUser = function() {
         $(".message-group-blocked").each(
             function() {
-                
+
                 $(this).prev().removeClass("has-divider");
-                $(this).hide();
+                $(this).css("width", "25%").css("margin-left", "80px");
+                //$(this).hide();
             }
         );
 
