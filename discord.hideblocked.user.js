@@ -4,22 +4,25 @@
 // @namespace   Violentmonkey Scripts
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js
 // @match       *://discordapp.com/*
-//
+// 
 // ==/UserScript==
+
+
 
 (function($) {
     "use strict";
 
     $.fn.removeBlockedUser = function() {
-        $(".message-group-blocked").each(
+        $("div[class^='messageGroupBlocked']").each(
             function() {
-                $(this).prev().removeClass("has-divider");
                 $(this).hide();
             }
         );
+
         return this;
     };
 
+    // Helper function for finding all elements matching selector affected by a mutation
     var mutationFind = function(mutation, selector) {
         var target = $(mutation.target),
             addedNodes = $(mutation.addedNodes);
@@ -29,6 +32,7 @@
         return mutated.add(descendants).add(ancestors);
     };
 
+    // Watch for new messages in chat
     new MutationObserver(function(mutations, observer) {
         mutations.forEach(function(mutation) {
             mutationFind(mutation, ".message").removeBlockedUser();
