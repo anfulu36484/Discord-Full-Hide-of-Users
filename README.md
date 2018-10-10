@@ -17,4 +17,4 @@ var blockusers = ["________user1_______", "______user2______"];
 var blockusers = ["Alextest"];
 
 ```
-(example_.png)
+![Discord-Full-Hide-of-Users](example_.png)
