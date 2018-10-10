@@ -33,7 +33,7 @@
     };
 
 
-    var blockusers = ["DoremianCleff", "Шмока"];
+    var blockusers = ["________user1_______", "______user2______"];
 
     $.fn.removeAvatar = function() {
         blockusers.forEach(function(blockuser) {
