@@ -5,8 +5,16 @@ Based on https://gist.github.com/notcammy/5ba4880ff33a3c2dfb85323f212f5c17
 
 
 
-Add users:
-
+**Add users:**
+```
 var blockusers = ["________user1_______", "______user2______"];
 
+```
 
+**Example**
+
+```
+var blockusers = ["Alextest"];
+
+```
+(example_.png)
