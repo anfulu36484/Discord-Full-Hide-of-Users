@@ -15,6 +15,8 @@
     var blockusers = ["________user1_______", "______user2______"];
     
     
+     
+    
     $.fn.removeBlockedUser = function() {
         $("div[class^='messageGroupBlocked']").each(
             function() {
@@ -38,7 +40,7 @@
 
     $.fn.removeAvatar = function() {
         blockusers.forEach(function(blockuser) {
-             $(".memberOnline-1CIh-0.member-3W1lQa:contains('"+blockuser+"')").each(
+             $(".member-3-YXUe:contains('"+blockuser+"')").each(
                  function() {
                      $(this).hide();
                  }
@@ -87,7 +89,7 @@
             mutationFind(mutation, ".message").removeBlockedUser();
             mutationFind(mutation, ".message").removeMessage();
             mutationFind(mutation, ".divider-3gKybi.dividerRed-MKoLlr.divider-3zi9LO").removeDivider();
-            mutationFind(mutation, ".memberOnline-1CIh-0.member-3W1lQa").removeAvatar();
+            mutationFind(mutation, ".member-3-YXUe").removeAvatar();
             mutationFind(mutation, ".memberOffline-2lN7gt.member-3W1lQa").removeAvatarOffline();
         });
     }).observe(document, {
