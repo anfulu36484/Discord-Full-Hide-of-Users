@@ -17,10 +17,13 @@
     
      
     
+    
+    
     $.fn.removeBlockedUser = function() {
-        $("div[class^='messageGroupBlocked']").each(
+        $(".blockedSystemMessage-2Rk1ek").parent().each(
             function() {
                 $(this).hide();
+                $(this).siblings().hide()
             }
         );
 
@@ -28,7 +31,7 @@
     };
 
     $.fn.removeDivider = function() {
-        $("divider-3gKybi.dividerRed-MKoLlr.divider-3zi9LO").each(
+        $(".divider-3_HH5L").each(
             function() {
                 $(this).hide();
             }
