@@ -3,7 +3,7 @@
 // @description Completely hides the clickable bar to view blocked user messages /hide avatars / hide of messages in which there are mentions of users.
 // @namespace   Violentmonkey Scripts
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js
-// @match       *://discordapp.com/*
+// @match       *://discord.com/*
 //
 // ==/UserScript==
 
@@ -11,16 +11,25 @@
 (function($) {
     "use strict";
 
-    
+
     var blockusers = ["________user1_______", "______user2______"];
-    
-    
-     
-    
-    
-    
+
+
+    $.fn.removeReplyToBlockedMessage = function() {
+        blockusers.forEach(function(blockuser) {
+             $(".repliedMessage-VokQwo:contains('"+blockuser+"')").parent().each(
+                 function() {
+                     $(this).hide();
+                 }
+             );
+        });
+        return this;
+    };
+
+
+
     $.fn.removeBlockedUser = function() {
-        $(".blockedSystemMessage-2Rk1ek").parent().each(
+        $(".blockedSystemMessage-2Rk1ek").parent().parent().each(
             function() {
                 $(this).hide();
                 $(this).siblings().hide()
@@ -65,7 +74,7 @@
 
     $.fn.removeMessage = function() {
         blockusers.forEach(function(blockuser) {
-            $(".containerCozyBounded-1rKFAn.containerCozy-jafyvG.container-1YxwTf:contains('"+blockuser+"')").each(
+            $(".containerCozyBounded-1rKFAn.containerCozy-jafyvG.container-1YxwTf:contains('"+blockuser+"')").parent().each(
                 function() {
                     $(this).hide();
                 }
@@ -73,7 +82,18 @@
         });
         return this;
     };
- 
+
+    $.fn.removeMessageWithMention = function() {
+        blockusers.forEach(function(blockuser) {
+            $(".mention:contains('"+blockuser+"')").parent().parent().parent().each(
+                function() {
+                    $(this).hide();
+                }
+            );
+        });
+        return this;
+    };
+
     // Helper function for finding all elements matching selector affected by a mutation
     var mutationFind = function(mutation, selector) {
         var target = $(mutation.target),
@@ -89,6 +109,8 @@
     // Watch for new messages in chat
     new MutationObserver(function(mutations, observer) {
         mutations.forEach(function(mutation) {
+            mutationFind(mutation, ".message").removeMessageWithMention();
+            mutationFind(mutation, ".message").removeReplyToBlockedMessage();
             mutationFind(mutation, ".message").removeBlockedUser();
             mutationFind(mutation, ".message").removeMessage();
             mutationFind(mutation, ".divider-3gKybi.dividerRed-MKoLlr.divider-3zi9LO").removeDivider();
