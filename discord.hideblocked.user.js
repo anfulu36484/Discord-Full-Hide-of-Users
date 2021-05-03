@@ -15,6 +15,7 @@
     var blockusers = ["________user1_______", "______user2______"];
 
 
+
     $.fn.removeReplyToBlockedMessage = function() {
         blockusers.forEach(function(blockuser) {
              $(".repliedMessage-VokQwo:contains('"+blockuser+"')").parent().each(
@@ -29,10 +30,10 @@
 
 
     $.fn.removeBlockedUser = function() {
-        $(".blockedSystemMessage-2Rk1ek").parent().parent().each(
+        $(".blockedSystemMessage-2Rk1ek").parent().parent().parent().each(
             function() {
                 $(this).hide();
-                $(this).siblings().hide()
+          
             }
         );
 
